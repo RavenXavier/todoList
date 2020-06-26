@@ -1,0 +1,35 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+.bkgrndImg{
+	background: url('chris-lawton-c0rIh0nFTFU-unsplash.jpg'); 
+	background-size: cover;
+}
+.bkImg{
+	background-color: #ffffff44;
+}
+.new-task input[type="text"]{
+	padding: 10px 0;
+	background: transparent;
+	border:none;
+	width: 50%;
+	padding-right: 80px;
+	font-size: 1.5rem;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.new-task input:focus{
+	outline: 0;
+}
+.taskName input[type="text"]{
+	padding: 10px 0;
+	background: transparent;
+	border:none;
+	width: 95%;
+	padding-right: 80px;
+	font-size: 1.5rem;
+	border-bottom: 3px solid rgba(0,0,0,0.5);
+}
+.imgCrop{
+	height:250px;
+}

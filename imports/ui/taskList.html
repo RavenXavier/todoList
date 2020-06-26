@@ -1,0 +1,16 @@
+<template name="taskList">
+	<div class="row my-3 mx-3">
+		{{#each allTask}}
+			{{#if usersChoice}}
+		<div class="col-12" id={{_id}}>
+			<form class="taskName">	
+				<input type="checkbox" {{checked}}>
+				<input type="text" class="newTask" value="{{task}}" disabled>
+				<i class="fa fa-trash js-delete"></i>
+				<h5>{{status}}</h5>
+			</form>
+		</div>
+			{{/ if}}
+		{{/ each}}
+	</div>
+</template>
