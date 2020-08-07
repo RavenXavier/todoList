@@ -1,16 +1,38 @@
 <template name="taskList">
 	<div class="row my-3 mx-3">
 		{{#each allTask}}
-			{{#if usersChoice}}
-		<div class="col-12" id={{_id}}>
+			{{#if userShow}}
+		<div class="col-6 {{checked}}" id={{_id}}>
 			<form class="taskName">	
 				<input type="checkbox" {{checked}}>
-				<input type="text" class="newTask" value="{{task}}" disabled>
-				<i class="fa fa-trash js-delete"></i>
-				<h5>{{status}}</h5>
+				<input type="text" class="newTask" value="{{task}}" disabled >
+				{{#if currentUser}}
+					<i class="fa fa-trash delColor js-delete"></i>
+				{{/if}}
+				<h5>by: {{createdBy}}{{#if usersChoice}}
+				<i class="fa fa-lock lockColor"></i> 
+				{{/if}}</h5>
 			</form>
-		</div>
-			{{/ if}}
+		</div> <!-- col-6 checked -->
+			{{/ if}}	
 		{{/ each}}
-	</div>
+
+		<!-- ====================================== -->
+			<!-- Modal -->
+			<div class="modal fade" id="confirmModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="staticBackdropLabel">Are really really sure you wanna delete this?</h5>
+			      </div>
+			      <div class="modal-footer">
+			      	<input id="deleteId" type="hidden">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+			        <button type="button" class="btn btn-primary js-confirm" data-dismiss="modal">Yes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<!-- ====================================== -->
+	</div> <!-- row end -->
 </template>

@@ -3,21 +3,13 @@
 		<div class="col text-center">
 			<form class="new-task">
 				<input type="text" id="tasks" name="task" placeholder="New Task">
+				<br>
+				<input type="radio" name="option" class="stat" value="0"> Public 	
+				<input type="radio" name="option" class="stat" value="1"> Private
 			</form>
-			<div class="row my-3">
-				<div class="col">
-					<form>
-						<input type="radio" class="stat" value="0"> Public
-						{{#if userField}}
-						<input type="radio" class="stat" value="1"> Private
-						{{/ if}}
-					</form>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col">
-					<button class="btn btn-dark js-saveMe" > Save
-						<!-- <input type="submit" value="Submit"> --></button>
+					<button class="btn btn-dark js-saveMe" > Save</button>
 				</div>
 			</div>
 			

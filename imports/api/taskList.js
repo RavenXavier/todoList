@@ -3,12 +3,24 @@ Template.taskList.helpers({
 		return myTasksdb.find();
 	},
 	usersChoice(){
-		if (this.status == "newPri"){
+		if (this.status == 1){
 			return true;
 		} else {
 			return false;
 		}
 	},
+	userShow(){
+		if (this.status == 0){
+			return true;
+		} 
+
+		if (this.createdById == Meteor.userId()){
+			return true;
+		} else {
+			return false;
+		}
+
+	},	
 	checked: function(){
 		var myCompleted = this.completed;
 		if(myCompleted){
@@ -21,9 +33,15 @@ Template.taskList.helpers({
 
 Template.taskList.events({
 	'click .js-delete'(event, instance){
-		console.log("Deleteing...");
 		var myId = this._id;
-		myTasksdb.remove({_id:myId});
+if ((this.createdById == undefined) || (this.createdById == Meteor.userId())){
+      $("#deleteId").val(myId);
+      $("#confirmModal").modal("show");
+    }
+    else {
+      alert("You don't have permission to delete that.");
+    }
+
 	},
 
 	'change [type=checkbox]': function(){
@@ -33,17 +51,19 @@ Template.taskList.events({
 			myTasksdb.update({_id:myId}, 
 			{$set:{
 				"completed": false
-				// "completed": completed
-			}});
-			console.log("Task marked as incomplete: "+ myId);
+					}});
 		} else{
 			myTasksdb.update({_id:myId}, 
 			{$set:{
 				"completed": true
-				// "completed": myCompleted
-			}});
-			console.log("Task marked as complete: "+ myId);
+				}});
 		}
+	},
+	'click .js-confirm'(event, instance){
+		var myId = $("#deleteId").val();
+		
+		$("#"+myId).fadeOut('slow',function(){
+			myTasksdb.remove({_id:myId});
+		});
 	}
-
 });
